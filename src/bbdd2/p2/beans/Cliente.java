@@ -36,4 +36,47 @@ public class Cliente {
     private String email;
     private LinkedList<String> cuentas;         // Referencia al PK de cada cuenta: numero
 
+    public Cliente(int DNI, String nombre, String apellidos, String direccion,
+                   int edad, int telefono, String email, LinkedList<String> cuentas) {
+        this.DNI = DNI;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+        this.edad = edad;
+        this.telefono = telefono;
+        this.email = email;
+        this.cuentas = cuentas;
+    }
+
+    public int getDNI() {
+        return DNI;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public LinkedList<String> getCuentas() {
+        return cuentas;
+    }
 }

@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * Project: bbdd2p2
  * File: .java
  * Modified: 26/03/14
- * Description: 
+ * Description:
  */
 
 public class Cuenta {
@@ -29,7 +29,26 @@ public class Cuenta {
 
     private Date fecha;
     private LinkedList<String> clientes;            // Referencia al PK de cada Cliente: DNI
-    private LinkedList<HashMap<String,String>> operaciones;      // Referencia al PK de cada Operación: {codigo,numero}
+    private LinkedList<HashMap<String, String>> operaciones;      // Referencia al PK de cada Operación: {codigo,numero}
     private double saldo;
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public LinkedList<String> getClientes() {
+        return clientes;
+    }
+
+    public LinkedList<HashMap<String, String>> getOperaciones() {
+        return operaciones;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
 }

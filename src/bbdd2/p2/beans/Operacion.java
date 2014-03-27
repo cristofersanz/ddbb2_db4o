@@ -7,7 +7,7 @@ import java.util.Date;
  * Project: bbdd2p2
  * File: .java
  * Modified: 26/03/14
- * Description: 
+ * Description:
  */
 
 public class Operacion {

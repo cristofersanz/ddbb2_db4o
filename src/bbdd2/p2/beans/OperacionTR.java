@@ -8,7 +8,7 @@ package bbdd2.p2.beans;
  * Description:
  */
 
-public class OperacionTR extends Operacion{
+public class OperacionTR extends Operacion {
 
     /**
      * CREATE TYPE tipo_OperacionTransferencia UNDER tipo_Operacion(
