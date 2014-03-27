@@ -1,5 +1,7 @@
 package bbdd2.p2.beans;
 
+import java.util.Date;
+
 /**
  * Author: Cristofer Sanz Blasco (584191)
  * Project: bbdd2p2
@@ -19,4 +21,17 @@ public class OperacionTR extends Operacion {
 
     private String cuentaTR;            // REFERENCES bbdd2.p2.beans.Cuenta(numero)
 
+    public String getCuentaTR() {
+        return cuentaTR;
+    }
+
+    public void setCuentaTR(String cuentaTR) {
+        this.cuentaTR = cuentaTR;
+    }
+
+    public OperacionTR(String codigo, String numero, String descripcion,
+                       String tipo, int cantidad, Date fecha, String cuentaTR) {
+        super(codigo, numero, descripcion, tipo, cantidad, fecha);
+        this.cuentaTR = cuentaTR;
+    }
 }

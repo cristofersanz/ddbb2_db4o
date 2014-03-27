@@ -57,4 +57,31 @@ public class Operacion {
     public Date getFecha() {
         return fecha;
     }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setCantidad(int cantidad) {
+
+        this.cantidad = cantidad;
+    }
+
+    public Operacion(String codigo, String numero, String descripcion,
+                     String tipo, int cantidad, Date fecha) {
+        this.codigo = codigo;
+        this.numero = numero;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.cantidad = cantidad;
+        this.fecha = fecha;
+    }
 }

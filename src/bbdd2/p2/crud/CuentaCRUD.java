@@ -55,6 +55,7 @@ public class CuentaCRUD {
             nuevaCuenta = actualizarParametrosCAhorro((CAhorro) cuenta);
         } else { /* cuenta.getClass() == CCorriente.class */
             nuevaCuenta = actualizarParametrosCCorriente((CCorriente) cuenta);
+            comprobarExistenciaOficina((CCorriente) cuenta);                  //TODO Comprobar que no falla el casteo (CCorriente)
         }
 
         comprobarExistenciaClientes(cuenta);

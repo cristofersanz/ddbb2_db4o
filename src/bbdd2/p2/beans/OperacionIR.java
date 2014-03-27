@@ -1,5 +1,7 @@
 package bbdd2.p2.beans;
 
+import java.util.Date;
+
 /**
  * Author: Cristofer Sanz Blasco (584191)
  * Project: bbdd2p2
@@ -19,4 +21,17 @@ public class OperacionIR extends Operacion {
 
     private String oficinaIR;                    // REFERENCES bbdd2.p2.beans.Oficina(codigo)
 
+    public String getOficinaIR() {
+        return oficinaIR;
+    }
+
+    public void setOficinaIR(String oficinaIR) {
+        this.oficinaIR = oficinaIR;
+    }
+
+    public OperacionIR(String codigo, String numero, String descripcion,
+                       String tipo, int cantidad, Date fecha, String oficinaIR) {
+        super(codigo, numero, descripcion, tipo, cantidad, fecha);
+        this.oficinaIR = oficinaIR;
+    }
 }
