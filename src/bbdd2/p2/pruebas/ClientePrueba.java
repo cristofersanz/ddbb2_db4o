@@ -18,15 +18,11 @@ import java.util.List;
 
 public class ClientePrueba {
     public static void main(String[] args) throws ClienteException {
-        LinkedList<String> cuentas = new LinkedList<String>();
-        cuentas.add("01231");
-        ClienteCRUD.agregarCliente(new Cliente(72891478, "Cristofer", "", "", 72, 975123, "", cuentas));
-        List<Cliente> clientes = Contenedor.getInstancia().query(new Predicate<Cliente>() {
-            @Override
-            public boolean match(Cliente c) {
-                return true;
-            }
-        });
-        clientes.get(0);
+
+        ClienteCRUD.agregarCliente(new Cliente(100, "Pepe", null, null, 0, 0, null, null));
+        Cliente cliente = ClienteCRUD.encontrarCliente(100);
+        ClienteCRUD.actualizarCliente(new Cliente(100, "Jose", null, null, 0, 0, null, null));
+        cliente = ClienteCRUD.encontrarCliente(100);
+        ClienteCRUD.eliminarCliente(cliente);
     }
 }
