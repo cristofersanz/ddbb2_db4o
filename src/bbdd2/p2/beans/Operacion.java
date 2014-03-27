@@ -34,4 +34,27 @@ public class Operacion {
     private int cantidad;
     private Date fecha;
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
 }

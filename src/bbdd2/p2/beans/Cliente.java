@@ -84,10 +84,6 @@ public class Cliente {
         this.cuentas = cuentas;
     }
 
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

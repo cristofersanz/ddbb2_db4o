@@ -28,7 +28,7 @@ public class Cuenta {
     private String numero;
 
     private Date fecha;
-    private LinkedList<String> clientes;            // Referencia al PK de cada Cliente: DNI
+    private LinkedList<Integer> clientes;            // Referencia al PK de cada Cliente: DNI
     private LinkedList<HashMap<String, String>> operaciones;      // Referencia al PK de cada Operación: {codigo,numero}
     private double saldo;
 
@@ -40,7 +40,7 @@ public class Cuenta {
         return fecha;
     }
 
-    public LinkedList<String> getClientes() {
+    public LinkedList<Integer> getClientes() {
         return clientes;
     }
 
@@ -50,5 +50,30 @@ public class Cuenta {
 
     public double getSaldo() {
         return saldo;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setClientes(LinkedList<Integer> clientes) {
+        this.clientes = clientes;
+    }
+
+    public void setOperaciones(LinkedList<HashMap<String, String>> operaciones) {
+        this.operaciones = operaciones;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public Cuenta(String numero, Date fecha, LinkedList<Integer> clientes,
+                  LinkedList<HashMap<String, String>> operaciones, double saldo) {
+        this.numero = numero;
+        this.fecha = fecha;
+        this.clientes = clientes;
+        this.operaciones = operaciones;
+        this.saldo = saldo;
     }
 }

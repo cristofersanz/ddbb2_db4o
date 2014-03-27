@@ -23,4 +23,16 @@ public class Oficina {
 
     private String direccion;
     private int telefono;
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
 }

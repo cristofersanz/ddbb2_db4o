@@ -39,27 +39,21 @@ public class ClienteCRUD {
 
     public static void actualizarCliente(final Cliente cliente) throws ClienteException {
         Cliente clienteNuevo = actualizarParametrosCliente(cliente);
+        comprobarExistenciaCuentas(cliente);
         Contenedor.getInstancia().store(clienteNuevo);
     }
 
     public static void eliminarCliente (final Cliente cliente) throws ClienteException {
         comprobarExistenciaCliente(cliente);
         Contenedor.getInstancia().delete(cliente);
+        //TODO: No está acabado. Hay que eliminar en las cuentas el parámetro
+        //TODO: que las vincula con mi cliente (un item de LinkedList).
+        //TODO: Además, si una cuenta se queda sin clientes, debemos eliminarla.
     }
 
     private static Cliente actualizarParametrosCliente(final Cliente cliente) throws ClienteException {
-        List<Cliente> clientes = Contenedor.getInstancia().query(new Predicate<Cliente>() {
-            @Override
-            public boolean match(Cliente cl) {
-                return cliente.getDNI() == cl.getDNI();
-            }
-        });
+        Cliente clienteNuevo = comprobarExistenciaCliente(cliente);
 
-        if (clientes.size() == 0) {
-            throw new ClienteException("El cliente no existe.");
-        }
-
-        Cliente clienteNuevo = clientes.get(0);
         clienteNuevo.setNombre(cliente.getNombre());
         clienteNuevo.setApellidos(cliente.getApellidos());
         clienteNuevo.setDireccion(cliente.getDireccion());
@@ -71,7 +65,7 @@ public class ClienteCRUD {
         return clienteNuevo;
     }
 
-    private static void comprobarExistenciaCliente(final Cliente cliente) throws ClienteException {
+    private static Cliente comprobarExistenciaCliente(final Cliente cliente) throws ClienteException {
         List<Cliente> clientes = Contenedor.getInstancia().query(new Predicate<Cliente>() {
             @Override
             public boolean match(Cliente cl) {
@@ -82,6 +76,8 @@ public class ClienteCRUD {
         if (clientes.size() == 0) {
             throw new ClienteException("El cliente no existe.");
         }
+
+        return clientes.get(0);
     }
 
     private static void comprobarNoExistenciaCliente(final Cliente cliente) throws ClienteException {
@@ -103,7 +99,7 @@ public class ClienteCRUD {
                 List<Cuenta> cuentas = Contenedor.getInstancia().query(new Predicate<Cuenta>() {
                     @Override
                     public boolean match(Cuenta cuenta) {
-                        return cuenta.getNumero() == numeroCuenta;
+                        return cuenta.getNumero().equals(numeroCuenta);
                     }
                 });
 
