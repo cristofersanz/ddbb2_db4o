@@ -35,4 +35,19 @@ public class Oficina {
     public int getTelefono() {
         return telefono;
     }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public Oficina(String codigo, String direccion, int telefono) {
+        this.codigo = codigo;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
 }
+
