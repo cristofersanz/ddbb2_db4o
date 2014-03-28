@@ -12,6 +12,7 @@ import bbdd2.p2.beans.Cuenta;
 import bbdd2.p2.persistencia.Contenedor;
 import com.db4o.query.Predicate;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ClienteCRUD {
@@ -46,9 +47,25 @@ public class ClienteCRUD {
     public static void eliminarCliente (final Cliente cliente) throws ClienteException {
         comprobarExistenciaCliente(cliente);
         Contenedor.getInstancia().delete(cliente);
-        //TODO: No está acabado. Hay que eliminar en las cuentas el parámetro
-        //TODO: que las vincula con mi cliente (un item de LinkedList).
-        //TODO: Además, si una cuenta se queda sin clientes, debemos eliminarla.
+        eliminarReferenciaDeCuenta(cliente);
+    }
+
+    private static void eliminarReferenciaDeCuenta(Cliente cliente) {
+        for (final String cuenta : cliente.getCuentas()) {
+            List<Cuenta> cuentas = Contenedor.getInstancia().query(new Predicate<Cuenta>() {
+                @Override
+                public boolean match(Cuenta cta) {
+                    return cuenta.equals(cta.getNumero());
+                }
+            });
+
+            for (Iterator<Integer> iterator = cuentas.get(0).getClientes().iterator(); iterator.hasNext(); ) {
+                int cl = iterator.next();
+                if (cl == cliente.getDNI()) {
+                    iterator.remove();
+                }
+            }
+        }
     }
 
     private static Cliente actualizarParametrosCliente(final Cliente cliente) throws ClienteException {

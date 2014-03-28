@@ -20,6 +20,7 @@ public class CuentaCRUD {
         comprobarNoExistenciaCuenta(cAhorro);
         comprobarExistenciaClientes(cAhorro);
         comprobarExistenciaOperaciones(cAhorro);
+        comprobarExistenciaDestinoTransferencias(cAhorro);
 
         Contenedor.getInstancia().store(cAhorro);
     }
@@ -29,6 +30,7 @@ public class CuentaCRUD {
         comprobarExistenciaClientes(cCorriente);
         comprobarExistenciaOperaciones(cCorriente);
         comprobarExistenciaOficina(cCorriente);
+        comprobarExistenciaDestinoTransferencias(cCorriente);
 
         Contenedor.getInstancia().store(cCorriente);
     }
@@ -60,6 +62,7 @@ public class CuentaCRUD {
 
         comprobarExistenciaClientes(cuenta);
         comprobarExistenciaOperaciones(cuenta);
+        comprobarExistenciaDestinoTransferencias(cuenta);
 
         Contenedor.getInstancia().store(nuevaCuenta);
     }
@@ -111,14 +114,32 @@ public class CuentaCRUD {
         }
     }
 
-    private static void comprobarExistenciaOperaciones(Cuenta cuenta) throws CuentaException {
-        if (cuenta.getOperaciones() != null) {
-            for (final HashMap<String, String> pkOperacion : cuenta.getOperaciones()) {
+    private static void comprobarExistenciaDestinoTransferencias(Cuenta cuenta) throws CuentaException {
+        if (cuenta.getDestinoTransferencias() != null) {
+            for (final HashMap<String, String> destinoTransferencia : cuenta.getOperaciones()) {
                 List<Operacion> operaciones = Contenedor.getInstancia().query(new Predicate<Operacion>() {
                     @Override
                     public boolean match(Operacion operacion) {
-                        return operacion.getCodigo().equals(pkOperacion.get("codigo")) &&
-                                operacion.getNumero().equals(pkOperacion.get("numero"));
+                        return operacion.getCodigo().equals(destinoTransferencia.get("codigo")) &&
+                                operacion.getNumero().equals(destinoTransferencia.get("numero"));
+                    }
+                });
+
+                if (operaciones.size() == 0) {
+                    throw new CuentaException("No existen operaciones.");
+                }
+            }
+        }
+    }
+
+    private static void comprobarExistenciaOperaciones(Cuenta cuenta) throws CuentaException {
+        if (cuenta.getOperaciones() != null) {
+            for (final HashMap<String, String> operacion : cuenta.getOperaciones()) {
+                List<Operacion> operaciones = Contenedor.getInstancia().query(new Predicate<Operacion>() {
+                    @Override
+                    public boolean match(Operacion op) {
+                        return op.getCodigo().equals(operacion.get("codigo")) &&
+                                op.getNumero().equals(operacion.get("numero"));
                     }
                 });
 

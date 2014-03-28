@@ -30,6 +30,7 @@ public class Cuenta {
     private Date fecha;
     private LinkedList<Integer> clientes;            // Referencia al PK de cada Cliente: DNI
     private LinkedList<HashMap<String, String>> operaciones;      // Referencia al PK de cada Operación: {codigo,numero}
+    private LinkedList<HashMap<String, String>> destinoTransferencias;
     private double saldo;
 
     public String getNumero() {
@@ -52,6 +53,14 @@ public class Cuenta {
         return saldo;
     }
 
+    public LinkedList<HashMap<String, String>> getDestinoTransferencias() {
+        return destinoTransferencias;
+    }
+
+    public void setDestinoTransferencias(LinkedList<HashMap<String, String>> destinoTransferencias) {
+        this.destinoTransferencias = destinoTransferencias;
+    }
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
@@ -69,11 +78,13 @@ public class Cuenta {
     }
 
     public Cuenta(String numero, Date fecha, LinkedList<Integer> clientes,
-                  LinkedList<HashMap<String, String>> operaciones, double saldo) {
+                  LinkedList<HashMap<String, String>> operaciones,
+                  LinkedList<HashMap<String, String>> destinoTransferencias, double saldo) {
         this.numero = numero;
         this.fecha = fecha;
         this.clientes = clientes;
         this.operaciones = operaciones;
         this.saldo = saldo;
+        this.destinoTransferencias = destinoTransferencias;
     }
 }

@@ -32,8 +32,10 @@ public class CCorriente extends Cuenta {
     }
 
     public CCorriente(String numero, Date fecha, LinkedList<Integer> clientes,
-                      LinkedList<HashMap<String, String>> operaciones, double saldo, String cuentaOficina) {
-        super(numero, fecha, clientes, operaciones, saldo);
+                      LinkedList<HashMap<String, String>> operaciones,
+                      LinkedList<HashMap<String, String>> destinoTransferencias,
+                      double saldo, String cuentaOficina) {
+        super(numero, fecha, clientes, operaciones, destinoTransferencias, saldo);
         this.cuentaOficina = cuentaOficina;
     }
 }

@@ -1,5 +1,8 @@
 package bbdd2.p2.beans;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+
 /**
  * Author: Cristofer Sanz Blasco (584191)
  * Project: bbdd2p2
@@ -23,6 +26,8 @@ public class Oficina {
 
     private String direccion;
     private int telefono;
+    private LinkedList<String> cCorrientes;
+    private LinkedList<HashMap<String, String>> operacionesIR;
 
     public String getCodigo() {
         return codigo;
@@ -36,6 +41,22 @@ public class Oficina {
         return telefono;
     }
 
+    public LinkedList<String> getcCorrientes() {
+        return cCorrientes;
+    }
+
+    public LinkedList<HashMap<String, String>> getOperacionesIR() {
+        return operacionesIR;
+    }
+
+    public void setOperacionesIR(LinkedList<HashMap<String, String>> operacionesIR) {
+        this.operacionesIR = operacionesIR;
+    }
+
+    public void setcCorrientes(LinkedList<String> cCorrientes) {
+        this.cCorrientes = cCorrientes;
+    }
+
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
@@ -44,10 +65,13 @@ public class Oficina {
         this.telefono = telefono;
     }
 
-    public Oficina(String codigo, String direccion, int telefono) {
+    public Oficina(String codigo, String direccion, int telefono,
+                   LinkedList<String> cCorrientes, LinkedList<HashMap<String, String>> operacionesIR) {
         this.codigo = codigo;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.cCorrientes = cCorrientes;
+        this.operacionesIR = operacionesIR;
     }
 }
 

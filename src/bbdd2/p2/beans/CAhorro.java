@@ -32,8 +32,9 @@ public class CAhorro extends Cuenta {
     }
 
     public CAhorro(String numero, Date fecha, LinkedList<Integer> clientes,
-                   LinkedList<HashMap<String, String>> operaciones, double saldo, byte interes) {
-        super(numero, fecha, clientes, operaciones, saldo);
+                   LinkedList<HashMap<String, String>> operaciones,
+                   LinkedList<HashMap<String, String>> destinoTransferencias, double saldo, byte interes) {
+        super(numero, fecha, clientes, operaciones, destinoTransferencias, saldo);
         this.interes = interes;
     }
 }
