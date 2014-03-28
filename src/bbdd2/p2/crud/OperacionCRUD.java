@@ -12,6 +12,7 @@ import bbdd2.p2.persistencia.Contenedor;
 import com.db4o.query.Predicate;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class OperacionCRUD {
@@ -92,8 +93,64 @@ public class OperacionCRUD {
     public static void eliminarOperacion(Operacion operacion) throws OperacionException {
         comprobarExistenciaOperacion(operacion);
         Contenedor.getInstancia().delete(operacion);
-        //TODO: No está acabado. Hay que eliminar en la cuenta el parámetro
-        //TODO: que las vincula con mi operacion (un item de LinkedList).
+        eliminarReferenciaDeCuenta(operacion);
+
+        if (operacion.getClass() == OperacionTR.class) {
+            eliminarReferenciaDeCuentaDestino((OperacionTR) operacion);
+        } else { /* operacion.getClass() == OpertacionIR.class */
+            eliminarReferenciaDeOficina((OperacionIR) operacion);
+        }
+    }
+
+    private static void eliminarReferenciaDeOficina(final OperacionIR operacion) {
+        List<Oficina> oficinas = Contenedor.getInstancia().query(new Predicate<Oficina>() {
+            @Override
+            public boolean match(Oficina oficina) {
+                return oficina.getCodigo().equals(operacion.getOficinaIR());
+            }
+        });
+
+        for (Iterator<HashMap<String, String>> iterator = oficinas.get(0).getOperacionesIR().iterator(); iterator.hasNext(); ) {
+            HashMap<String, String> pkOperacion = iterator.next();
+            if (pkOperacion.get("numero").equals(operacion.getNumero()) &&
+                    pkOperacion.get("codigo").equals(operacion.getCodigo())) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private static void eliminarReferenciaDeCuentaDestino(final OperacionTR operacion) {
+        List<Cuenta> cuentas = Contenedor.getInstancia().query(new Predicate<Cuenta>() {
+            @Override
+            public boolean match(Cuenta cuenta) {
+                return cuenta.getNumero().equals(operacion.getCuentaTR());
+            }
+        });
+
+        for (Iterator<HashMap<String, String>> iterator = cuentas.get(0).getDestinoTransferencias().iterator(); iterator.hasNext(); ) {
+            HashMap<String, String> pkOperacion = iterator.next();
+            if (pkOperacion.get("numero").equals(operacion.getNumero()) &&
+                    pkOperacion.get("codigo").equals(operacion.getCodigo())) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private static void eliminarReferenciaDeCuenta(final Operacion operacion) {
+        List<Cuenta> cuentas = Contenedor.getInstancia().query(new Predicate<Cuenta>() {
+            @Override
+            public boolean match(Cuenta cuenta) {
+                return cuenta.getNumero().equals(operacion.getNumero());
+            }
+        });
+
+        for (Iterator<HashMap<String, String>> iterator = cuentas.get(0).getOperaciones().iterator(); iterator.hasNext(); ) {
+            HashMap<String, String> pkOperacion = iterator.next();
+            if (pkOperacion.get("numero").equals(operacion.getNumero()) &&
+                    pkOperacion.get("codigo").equals(operacion.getCodigo())) {
+                iterator.remove();
+            }
+        }
     }
 
     private static Operacion comprobarExistenciaOperacion(final Operacion operacion) throws OperacionException {
