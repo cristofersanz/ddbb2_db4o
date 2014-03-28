@@ -12,6 +12,7 @@ import bbdd2.p2.persistencia.Contenedor;
 import com.db4o.query.Predicate;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class CuentaCRUD {
@@ -70,9 +71,76 @@ public class CuentaCRUD {
     public static void eliminarCuenta(Cuenta cuenta) throws CuentaException {
         comprobarExistenciaCuenta(cuenta);
         Contenedor.getInstancia().delete(cuenta);
-        //TODO: No está acabado. Hay que eliminar en los clientes el parámetro
-        //TODO: que los vincula con mi cuenta (un item de LinkedList). También
-        //TODO: hay que eliminar todas las operaciones asociadas a esa cuenta.
+        eliminarReferenciaDeCliente(cuenta);
+        eliminarReferenciaDeOperacion(cuenta);
+        eliminarReferenciaDeDestinoTransferencia(cuenta);
+        if (cuenta.getClass() == CCorriente.class) {
+            eliminarReferenciaDeCCorriente((CCorriente) cuenta);
+        }
+    }
+
+    private static void eliminarReferenciaDeCCorriente(final CCorriente cuenta) {
+        List<Oficina> oficinas = Contenedor.getInstancia().query(new Predicate<Oficina>() {
+            @Override
+            public boolean match(Oficina oficina) {
+                return cuenta.getCuentaOficina().equals(oficina.getCodigo());
+            }
+        });
+
+        for (Iterator<String> iterator = oficinas.get(0).getcCorrientes().iterator(); iterator.hasNext(); ) {
+            String cta = iterator.next();
+            if (cta.equals(cuenta.getNumero())) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private static void eliminarReferenciaDeDestinoTransferencia(Cuenta cuenta) {
+        for (final HashMap<String, String> destinoTransferencia : cuenta.getDestinoTransferencias()) {
+            List<OperacionTR> operacionesTR = Contenedor.getInstancia().query(new Predicate<OperacionTR>() {
+                @Override
+                public boolean match(OperacionTR opTR) {
+                    return destinoTransferencia.get("numero").equals(opTR.getNumero()) &&
+                            destinoTransferencia.get("codigo").equals(opTR.getCodigo());
+                }
+            });
+
+            operacionesTR.get(0).setNumero(null);
+
+        }
+    }
+
+    private static void eliminarReferenciaDeOperacion(Cuenta cuenta) {
+        for (final HashMap<String, String> operacion : cuenta.getOperaciones()) {
+            List<Operacion> operaciones = Contenedor.getInstancia().query(new Predicate<Operacion>() {
+                @Override
+                public boolean match(Operacion op) {
+                    return operacion.get("numero").equals(op.getNumero()) &&
+                            operacion.get("codigo").equals(op.getCodigo());
+                }
+            });
+
+            operaciones.get(0).setNumero(null);
+
+        }
+    }
+
+    private static void eliminarReferenciaDeCliente(Cuenta cuenta) {
+        for (final int cliente : cuenta.getClientes()) {
+            List<Cliente> clientes = Contenedor.getInstancia().query(new Predicate<Cliente>() {
+                @Override
+                public boolean match(Cliente cl) {
+                    return cliente == cl.getDNI();
+                }
+            });
+
+            for (Iterator<String> iterator = clientes.get(0).getCuentas().iterator(); iterator.hasNext(); ) {
+                String cta = iterator.next();
+                if (cta == cuenta.getNumero()) {
+                    iterator.remove();
+                }
+            }
+        }
     }
 
     private static Cuenta actualizarParametrosCCorriente(final CCorriente cuenta) throws CuentaException {

@@ -58,6 +58,10 @@ public class Operacion {
         return fecha;
     }
 
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
@@ -84,4 +88,6 @@ public class Operacion {
         this.cantidad = cantidad;
         this.fecha = fecha;
     }
+
+
 }
