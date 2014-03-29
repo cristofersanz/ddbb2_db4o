@@ -73,5 +73,9 @@ public class Oficina {
         this.cCorrientes = cCorrientes;
         this.operacionesIR = operacionesIR;
     }
-}
 
+    public String toString() {
+        return getCodigo() + " / " + getDireccion() + " / " + getTelefono() + " / " +
+                getcCorrientes() + " / " + getOperacionesIR() + "\n";
+    }
+}

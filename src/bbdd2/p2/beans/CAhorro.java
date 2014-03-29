@@ -21,20 +21,24 @@ public class CAhorro extends Cuenta {
      * REF IS SYSTEM GENERATED;
      */
 
-    private byte interes;
+    private int interes;
 
-    public byte getInteres() {
+    public int getInteres() {
         return interes;
     }
 
-    public void setInteres(byte interes) {
+    public void setInteres(int interes) {
         this.interes = interes;
     }
 
     public CAhorro(String numero, Date fecha, LinkedList<Integer> clientes,
                    LinkedList<HashMap<String, String>> operaciones,
-                   LinkedList<HashMap<String, String>> destinoTransferencias, double saldo, byte interes) {
+                   LinkedList<HashMap<String, String>> destinoTransferencias, double saldo, int interes) {
         super(numero, fecha, clientes, operaciones, destinoTransferencias, saldo);
         this.interes = interes;
+    }
+
+    public String toString() {
+        return super.toString() + " / " + getInteres() + "\n";
     }
 }

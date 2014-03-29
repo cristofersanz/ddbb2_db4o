@@ -38,4 +38,8 @@ public class CCorriente extends Cuenta {
         super(numero, fecha, clientes, operaciones, destinoTransferencias, saldo);
         this.cuentaOficina = cuentaOficina;
     }
+
+    public String toString() {
+        return super.toString() + " / " + getCuentaOficina() + "\n";
+    }
 }

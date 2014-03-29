@@ -87,4 +87,13 @@ public class Cuenta {
         this.saldo = saldo;
         this.destinoTransferencias = destinoTransferencias;
     }
+
+    public String toString() {
+
+        /* Según el esquema de la BD nunca será llamado, por ello, las subclases acabarán de
+        implementar el método toString() añadiendo los parámetros especiales de cada una y \n.
+         */
+        return getNumero() + " / " + getFecha() + " / " + getClientes() + " / " +
+                getOperaciones() + " / " + getDestinoTransferencias() + " / " + getSaldo();
+    }
 }

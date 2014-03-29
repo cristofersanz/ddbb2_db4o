@@ -110,11 +110,13 @@ public class OperacionCRUD {
             }
         });
 
-        for (Iterator<HashMap<String, String>> iterator = oficinas.get(0).getOperacionesIR().iterator(); iterator.hasNext(); ) {
-            HashMap<String, String> pkOperacion = iterator.next();
-            if (pkOperacion.get("numero").equals(operacion.getNumero()) &&
-                    pkOperacion.get("codigo").equals(operacion.getCodigo())) {
-                iterator.remove();
+        if (oficinas.size() != 0) {
+            for (Iterator<HashMap<String, String>> iterator = oficinas.get(0).getOperacionesIR().iterator(); iterator.hasNext(); ) {
+                HashMap<String, String> pkOperacion = iterator.next();
+                if (pkOperacion.get("numero").equals(operacion.getNumero()) &&
+                        pkOperacion.get("codigo").equals(operacion.getCodigo())) {
+                    iterator.remove();
+                }
             }
         }
     }
@@ -127,11 +129,13 @@ public class OperacionCRUD {
             }
         });
 
-        for (Iterator<HashMap<String, String>> iterator = cuentas.get(0).getDestinoTransferencias().iterator(); iterator.hasNext(); ) {
-            HashMap<String, String> pkOperacion = iterator.next();
-            if (pkOperacion.get("numero").equals(operacion.getNumero()) &&
-                    pkOperacion.get("codigo").equals(operacion.getCodigo())) {
-                iterator.remove();
+        if (cuentas.size() != 0) {
+            for (Iterator<HashMap<String, String>> iterator = cuentas.get(0).getDestinoTransferencias().iterator(); iterator.hasNext(); ) {
+                HashMap<String, String> pkOperacion = iterator.next();
+                if (pkOperacion.get("numero").equals(operacion.getNumero()) &&
+                        pkOperacion.get("codigo").equals(operacion.getCodigo())) {
+                    iterator.remove();
+                }
             }
         }
     }
@@ -144,11 +148,13 @@ public class OperacionCRUD {
             }
         });
 
-        for (Iterator<HashMap<String, String>> iterator = cuentas.get(0).getOperaciones().iterator(); iterator.hasNext(); ) {
-            HashMap<String, String> pkOperacion = iterator.next();
-            if (pkOperacion.get("numero").equals(operacion.getNumero()) &&
-                    pkOperacion.get("codigo").equals(operacion.getCodigo())) {
-                iterator.remove();
+        if (cuentas.size() != 0) {
+            for (Iterator<HashMap<String, String>> iterator = cuentas.get(0).getOperaciones().iterator(); iterator.hasNext(); ) {
+                HashMap<String, String> pkOperacion = iterator.next();
+                if (pkOperacion.get("numero").equals(operacion.getNumero()) &&
+                        pkOperacion.get("codigo").equals(operacion.getCodigo())) {
+                    iterator.remove();
+                }
             }
         }
     }

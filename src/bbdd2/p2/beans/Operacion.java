@@ -89,5 +89,8 @@ public class Operacion {
         this.fecha = fecha;
     }
 
-
+    public String toString() {
+        return getCodigo() + " / " + getNumero() + " / " + getDescripcion() + " / " +
+                getTipo() + " / " + getCantidad() + " / " + getFecha();
+    }
 }

@@ -44,25 +44,29 @@ public class ClienteCRUD {
         Contenedor.getInstancia().store(clienteNuevo);
     }
 
-    public static void eliminarCliente (final Cliente cliente) throws ClienteException {
+    public static void eliminarCliente(final Cliente cliente) throws ClienteException {
         comprobarExistenciaCliente(cliente);
         Contenedor.getInstancia().delete(cliente);
         eliminarReferenciaDeCuenta(cliente);
     }
 
     private static void eliminarReferenciaDeCuenta(Cliente cliente) {
-        for (final String cuenta : cliente.getCuentas()) {
-            List<Cuenta> cuentas = Contenedor.getInstancia().query(new Predicate<Cuenta>() {
-                @Override
-                public boolean match(Cuenta cta) {
-                    return cuenta.equals(cta.getNumero());
-                }
-            });
+        if (cliente.getCuentas() != null) {
+            for (final String cuenta : cliente.getCuentas()) {
+                List<Cuenta> cuentas = Contenedor.getInstancia().query(new Predicate<Cuenta>() {
+                    @Override
+                    public boolean match(Cuenta cta) {
+                        return cuenta.equals(cta.getNumero());
+                    }
+                });
 
-            for (Iterator<Integer> iterator = cuentas.get(0).getClientes().iterator(); iterator.hasNext(); ) {
-                int cl = iterator.next();
-                if (cl == cliente.getDNI()) {
-                    iterator.remove();
+                if (cuentas.size() != 0) {
+                    for (Iterator<Integer> iterator = cuentas.get(0).getClientes().iterator(); iterator.hasNext(); ) {
+                        int cl = iterator.next();
+                        if (cl == cliente.getDNI()) {
+                            iterator.remove();
+                        }
+                    }
                 }
             }
         }

@@ -34,4 +34,8 @@ public class OperacionIR extends Operacion {
         super(codigo, numero, descripcion, tipo, cantidad, fecha);
         this.oficinaIR = oficinaIR;
     }
+
+    public String toString() {
+        return super.toString() + " / " + getOficinaIR() + "\n";
+    }
 }

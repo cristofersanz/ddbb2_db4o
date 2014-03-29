@@ -34,4 +34,8 @@ public class OperacionTR extends Operacion {
         super(codigo, numero, descripcion, tipo, cantidad, fecha);
         this.cuentaTR = cuentaTR;
     }
+
+    public String toString() {
+        return super.toString() + " / " + getCuentaTR() + "\n";
+    }
 }

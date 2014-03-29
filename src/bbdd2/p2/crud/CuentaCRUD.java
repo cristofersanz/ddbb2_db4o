@@ -87,57 +87,69 @@ public class CuentaCRUD {
             }
         });
 
-        for (Iterator<String> iterator = oficinas.get(0).getcCorrientes().iterator(); iterator.hasNext(); ) {
-            String cta = iterator.next();
-            if (cta.equals(cuenta.getNumero())) {
-                iterator.remove();
+        if (oficinas.size() != 0) {
+            for (Iterator<String> iterator = oficinas.get(0).getcCorrientes().iterator(); iterator.hasNext(); ) {
+                String cta = iterator.next();
+                if (cta.equals(cuenta.getNumero())) {
+                    iterator.remove();
+                }
             }
         }
     }
 
     private static void eliminarReferenciaDeDestinoTransferencia(Cuenta cuenta) {
-        for (final HashMap<String, String> destinoTransferencia : cuenta.getDestinoTransferencias()) {
-            List<OperacionTR> operacionesTR = Contenedor.getInstancia().query(new Predicate<OperacionTR>() {
-                @Override
-                public boolean match(OperacionTR opTR) {
-                    return destinoTransferencia.get("numero").equals(opTR.getNumero()) &&
-                            destinoTransferencia.get("codigo").equals(opTR.getCodigo());
+        if (cuenta.getDestinoTransferencias() != null) {
+            for (final HashMap<String, String> destinoTransferencia : cuenta.getDestinoTransferencias()) {
+                List<OperacionTR> operacionesTR = Contenedor.getInstancia().query(new Predicate<OperacionTR>() {
+                    @Override
+                    public boolean match(OperacionTR opTR) {
+                        return destinoTransferencia.get("numero").equals(opTR.getNumero()) &&
+                                destinoTransferencia.get("codigo").equals(opTR.getCodigo());
+                    }
+                });
+
+                if (operacionesTR.size() != 0) {
+                    operacionesTR.get(0).setNumero(null);
                 }
-            });
-
-            operacionesTR.get(0).setNumero(null);
-
+            }
         }
     }
 
     private static void eliminarReferenciaDeOperacion(Cuenta cuenta) {
-        for (final HashMap<String, String> operacion : cuenta.getOperaciones()) {
-            List<Operacion> operaciones = Contenedor.getInstancia().query(new Predicate<Operacion>() {
-                @Override
-                public boolean match(Operacion op) {
-                    return operacion.get("numero").equals(op.getNumero()) &&
-                            operacion.get("codigo").equals(op.getCodigo());
+        if (cuenta.getOperaciones() != null) {
+            for (final HashMap<String, String> operacion : cuenta.getOperaciones()) {
+                List<Operacion> operaciones = Contenedor.getInstancia().query(new Predicate<Operacion>() {
+                    @Override
+                    public boolean match(Operacion op) {
+                        return operacion.get("numero").equals(op.getNumero()) &&
+                                operacion.get("codigo").equals(op.getCodigo());
+                    }
+                });
+
+                if (operaciones.size() != 0) {
+                    operaciones.get(0).setNumero(null);
                 }
-            });
-
-            operaciones.get(0).setNumero(null);
-
+            }
         }
     }
 
     private static void eliminarReferenciaDeCliente(Cuenta cuenta) {
-        for (final int cliente : cuenta.getClientes()) {
-            List<Cliente> clientes = Contenedor.getInstancia().query(new Predicate<Cliente>() {
-                @Override
-                public boolean match(Cliente cl) {
-                    return cliente == cl.getDNI();
-                }
-            });
+        if (cuenta.getClientes() != null) {
+            for (final int cliente : cuenta.getClientes()) {
+                List<Cliente> clientes = Contenedor.getInstancia().query(new Predicate<Cliente>() {
+                    @Override
+                    public boolean match(Cliente cl) {
+                        return cliente == cl.getDNI();
+                    }
+                });
 
-            for (Iterator<String> iterator = clientes.get(0).getCuentas().iterator(); iterator.hasNext(); ) {
-                String cta = iterator.next();
-                if (cta == cuenta.getNumero()) {
-                    iterator.remove();
+                if (clientes.size() != 0) {
+                    for (Iterator<String> iterator = clientes.get(0).getCuentas().iterator(); iterator.hasNext(); ) {
+                        String cta = iterator.next();
+                        if (cta == cuenta.getNumero()) {
+                            iterator.remove();
+                        }
+                    }
                 }
             }
         }

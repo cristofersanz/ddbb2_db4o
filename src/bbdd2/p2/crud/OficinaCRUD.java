@@ -64,31 +64,37 @@ public class OficinaCRUD {
     }
 
     private static void eliminarReferenciaDeCCorriente(Oficina oficina) {
-        for (final String cCorriente : oficina.getcCorrientes()) {
-            List<CCorriente> cCorrientes = Contenedor.getInstancia().query(new Predicate<CCorriente>() {
-                @Override
-                public boolean match(CCorriente cta) {
-                    return cta.getNumero().equals(cCorriente);
+        if (oficina.getcCorrientes() != null) {
+            for (final String cCorriente : oficina.getcCorrientes()) {
+                List<CCorriente> cCorrientes = Contenedor.getInstancia().query(new Predicate<CCorriente>() {
+                    @Override
+                    public boolean match(CCorriente cta) {
+                        return cta.getNumero().equals(cCorriente);
+                    }
+                });
+
+                if (cCorrientes.size() != 0) {
+                    cCorrientes.get(0).setCuentaOficina(null);
                 }
-            });
-
-            cCorrientes.get(0).setCuentaOficina(null);
-
+            }
         }
     }
 
     private static void eliminarReferenciaDeOperacionIR(Oficina oficina) {
-        for (final HashMap<String, String> operacionIR : oficina.getOperacionesIR()) {
-            List<OperacionIR> operacionesIR = Contenedor.getInstancia().query(new Predicate<OperacionIR>() {
-                @Override
-                public boolean match(OperacionIR opIR) {
-                    return operacionIR.get("numero").equals(opIR.getNumero()) &&
-                            operacionIR.get("codigo").equals(opIR.getCodigo());
+        if (oficina.getOperacionesIR() != null) {
+            for (final HashMap<String, String> operacionIR : oficina.getOperacionesIR()) {
+                List<OperacionIR> operacionesIR = Contenedor.getInstancia().query(new Predicate<OperacionIR>() {
+                    @Override
+                    public boolean match(OperacionIR opIR) {
+                        return operacionIR.get("numero").equals(opIR.getNumero()) &&
+                                operacionIR.get("codigo").equals(opIR.getCodigo());
+                    }
+                });
+
+                if (operacionesIR.size() != 0) {
+                    operacionesIR.get(0).setOficinaIR(null);
                 }
-            });
-
-            operacionesIR.get(0).setOficinaIR(null);
-
+            }
         }
     }
 
@@ -108,7 +114,6 @@ public class OficinaCRUD {
                 }
             }
         }
-
     }
 
     private static void comprobarExistenciaCCorrientes(final Oficina oficina) throws OficinaException {

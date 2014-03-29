@@ -10,12 +10,19 @@ package bbdd2.p2.persistencia;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class Contenedor {
+
+    private static String DB_NAME = "database.db4o";
 
     private static ObjectContainer contenedor;
 
     private Contenedor() {
-        contenedor = Db4oEmbedded.openFile("database.db4o");
+        contenedor = Db4oEmbedded.openFile(DB_NAME);       // TODO Evitar hardcodear el nombre de la BD
     }
 
     public static ObjectContainer getInstancia() {
@@ -26,4 +33,11 @@ public class Contenedor {
         return contenedor;
     }
 
+    public static void eliminarBD() throws IOException {
+        Path dbPath = FileSystems.getDefault().getPath(DB_NAME);
+
+        if (Files.exists(dbPath)) {
+            Files.delete(dbPath);    // TODO Evitar hardcodear el nombre de la BD
+        }
+    }
 }
