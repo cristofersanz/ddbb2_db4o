@@ -1,10 +1,3 @@
-/**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 29/03/14
- * Description: 
- */
 package bbdd2.p2.pruebas;
 
 import bbdd2.p2.beans.CCorriente;
@@ -20,6 +13,16 @@ import java.util.List;
 import static bbdd2.p2.persistencia.Contenedor.eliminarBD;
 import static bbdd2.p2.pruebas.Datos.*;
 
+/**
+ * Clase de pruebas que realiza varias queries
+ * contra la base de datos utilizando Query-By-Example.
+ *
+ * @author Cristofer Sanz
+ * @author David Enjuanes
+ * @author Victor Arellano
+ * @author Alejandro Bean
+ * @author Guillermo Sese
+ */
 public class PruebaQBE {
 
     public static void main(String[] args) throws ClienteException, CuentaException, IOException {

@@ -3,21 +3,20 @@ package bbdd2.p2.beans;
 import java.util.Date;
 
 /**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 26/03/14
- * Description:
+ * Bean que implementa la entidad OperacionTR, subtipo de Operacion.
+ * El esquema objeto/relacional es:
+ *  CREATE TYPE tipo_OperacionTransferencia UNDER tipo_Operacion(
+ *  cuentaTR REFERENCES Cuenta(numero))
+ *  INSTANTIABLE NOT FINAL
+ *  REF IS SYSTEM GENERATED;
+ *
+ * @author Cristofer Sanz
+ * @author David Enjuanes
+ * @author Victor Arellano
+ * @author Alejandro Bean
+ * @author Guillermo Sese
  */
-
 public class OperacionTR extends Operacion {
-
-    /**
-     * CREATE TYPE tipo_OperacionTransferencia UNDER tipo_Operacion(
-     * cuentaTR REFERENCES Cuenta(numero))
-     * INSTANTIABLE NOT FINAL
-     * REF IS SYSTEM GENERATED;
-     */
 
     private String cuentaTR;            // REFERENCES bbdd2.p2.beans.Cuenta(numero)
 

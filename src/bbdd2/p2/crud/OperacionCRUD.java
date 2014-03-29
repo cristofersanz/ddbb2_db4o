@@ -1,10 +1,3 @@
-/**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 27/03/14
- * Description: 
- */
 package bbdd2.p2.crud;
 
 import bbdd2.p2.beans.*;
@@ -15,6 +8,20 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Implementa las operaciones CRUD (Create, Read, Update, Delete)
+ * de la entidad Operacion, así como, OperacionTR y OperacionIR,
+ * sobre una base de datos db4o.
+ * Todas las operaciones que realiza aseguran la coherencia en
+ * la base de datos generando excepción si se hace referencia a
+ * una instancia de una entidad no existente.
+ *
+ * @author Cristofer Sanz
+ * @author David Enjuanes
+ * @author Victor Arellano
+ * @author Alejandro Bean
+ * @author Guillermo Sese
+ */
 public class OperacionCRUD {
 
     public static void agregarOperacionIR(OperacionIR operacion) throws OperacionException {

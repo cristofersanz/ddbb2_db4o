@@ -1,10 +1,3 @@
-/**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 27/03/14
- * Description: 
- */
 package bbdd2.p2.persistencia;
 
 import com.db4o.Db4oEmbedded;
@@ -15,6 +8,16 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * Clase que permite conectar a la base de datos implementando
+ * el patrón singleton. También permite eliminarla.
+ *
+ * @author Cristofer Sanz
+ * @author David Enjuanes
+ * @author Victor Arellano
+ * @author Alejandro Bean
+ * @author Guillermo Sese
+ */
 public class Contenedor {
 
     private static String DB_NAME = "database.db4o";
@@ -22,7 +25,7 @@ public class Contenedor {
     private static ObjectContainer contenedor;
 
     private Contenedor() {
-        contenedor = Db4oEmbedded.openFile(DB_NAME);       // TODO Evitar hardcodear el nombre de la BD
+        contenedor = Db4oEmbedded.openFile(DB_NAME);
     }
 
     public static ObjectContainer getInstancia() {
@@ -37,7 +40,7 @@ public class Contenedor {
         Path dbPath = FileSystems.getDefault().getPath(DB_NAME);
 
         if (Files.exists(dbPath)) {
-            Files.delete(dbPath);    // TODO Evitar hardcodear el nombre de la BD
+            Files.delete(dbPath);
         }
     }
 }

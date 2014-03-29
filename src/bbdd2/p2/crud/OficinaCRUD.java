@@ -1,10 +1,3 @@
-/**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 28/03/14
- * Description: 
- */
 package bbdd2.p2.crud;
 
 import bbdd2.p2.beans.CCorriente;
@@ -16,6 +9,19 @@ import com.db4o.query.Predicate;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Implementa las operaciones CRUD (Create, Read, Update, Delete)
+ * de la entidad Oficina sobre una base de datos db4o.
+ * Todas las operaciones que realiza aseguran la coherencia en
+ * la base de datos generando excepción si se hace referencia a
+ * una instancia de una entidad no existente.
+ *
+ * @author Cristofer Sanz
+ * @author David Enjuanes
+ * @author Victor Arellano
+ * @author Alejandro Bean
+ * @author Guillermo Sese
+ */
 public class OficinaCRUD {
 
     public static void agregarOficina(Oficina oficina) throws OficinaException {

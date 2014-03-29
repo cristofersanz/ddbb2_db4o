@@ -5,24 +5,19 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 26/03/14
- * Description:
+ * Bean que implementa la entidad Cuenta.
+ * El esquema objet/relacional es:
+ *  CREATE TYPE tipo_cuenta AS OBJECT(
+ *  numero        NUMBER(20),
+ *  fecha            DATE,
+ *  clientes        listaClientes,
+ *  operaciones    listaOperaciones,
+ *  saldo            NUMBER(20))
+ *  NOT FINAL REF IS SYSTEM GENERATED;
+ *
+ *  @author Cristofer Sanz
  */
-
 public class Cuenta {
-
-    /**
-     * CREATE TYPE tipo_cuenta AS OBJECT(
-     * numero        NUMBER(20),
-     * fecha            DATE,
-     * clientes        listaClientes,
-     * operaciones    listaOperaciones,
-     * saldo            NUMBER(20))
-     * NOT FINAL REF IS SYSTEM GENERATED;
-     */
 
     /* PRIMARY KEY */
     private String numero;

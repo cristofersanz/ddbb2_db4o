@@ -1,10 +1,3 @@
-/**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 27/03/14
- * Description: 
- */
 package bbdd2.p2.pruebas;
 
 import bbdd2.p2.crud.ClienteException;
@@ -15,6 +8,21 @@ import java.io.IOException;
 import static bbdd2.p2.persistencia.Contenedor.eliminarBD;
 import static bbdd2.p2.pruebas.Datos.*;
 
+/**
+ * Clase que implementa las pruebas de coherencia
+ * sobre la base de datos. Imprime el resultado por
+ * consola.
+ *
+ * @author Cristofer Sanz
+ * @author David Enjuanes
+ * @author Victor Arellano
+ * @author Alejandro Bean
+ * @author Guillermo Sese
+ * @author David Enjuanes
+ * @author Victor Arellano
+ * @author Alejandro Bean
+ * @author Guillermo Sese
+ */
 public class PruebaCoherencia {
 
     public static void main(String[] args) throws ClienteException, CuentaException, IOException {

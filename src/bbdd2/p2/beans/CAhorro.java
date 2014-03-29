@@ -5,21 +5,21 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 26/03/14
- * Description:
+ * Bean que implementa la entidad Cuenta ahorro, subtipo
+ * de cuenta.
+ * El esquema objeto/relacional es:
+ *  CREATE TYPE tipo_cAhorro UNDER tipo_cuenta(
+ *  interes        NUMBER(3))
+ *  INSTANTIABLE NOT FINAL
+ *  REF IS SYSTEM GENERATED;
+ *
+ * @author Cristofer Sanz
+ * @author David Enjuanes
+ * @author Victor Arellano
+ * @author Alejandro Bean
+ * @author Guillermo Sese
  */
-
 public class CAhorro extends Cuenta {
-
-    /**
-     * CREATE TYPE tipo_cAhorro UNDER tipo_cuenta(
-     * interes        NUMBER(3))
-     * INSTANTIABLE NOT FINAL
-     * REF IS SYSTEM GENERATED;
-     */
 
     private int interes;
 

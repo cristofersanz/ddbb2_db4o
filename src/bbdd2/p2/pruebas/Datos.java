@@ -1,10 +1,3 @@
-/**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 29/03/14
- * Description: 
- */
 package bbdd2.p2.pruebas;
 
 import bbdd2.p2.beans.CAhorro;
@@ -17,6 +10,12 @@ import bbdd2.p2.crud.CuentaException;
 
 import java.util.LinkedList;
 
+/**
+ * Clase con datos de prueba para realizar pruebas
+ * sobre la base de datos.
+ *
+ * @author Cristofer
+ */
 public class Datos {
 
     /**

@@ -3,27 +3,21 @@ package bbdd2.p2.beans;
 import java.util.Date;
 
 /**
- * Author: Cristofer Sanz Blasco (584191)
- * Project: bbdd2p2
- * File: .java
- * Modified: 26/03/14
- * Description:
+ * Bean que implementa la entidad Operación.
+ * El esquema objeto/relacional es:
+ *  CREATE TYPE tipo_Operacion AS OBJECT(
+ *  codigo        NUMBER(9),
+ *  descripcion    VARCHAR(20),
+ *  tipo            VARCHAR(20),
+ *  cantidad        NUMBER(9),
+ *  fecha            DATE,
+ *  numero        REFERENCES Cuenta(numero));
+ *  INSTANTIABLE NOT FINAL
+ *  REF IS SYSTEM GENERATED;
+ *
+ *  @author Cristofer Sanz
  */
-
 public class Operacion {
-
-
-    /**
-     * CREATE TYPE tipo_Operacion AS OBJECT(
-     * codigo        NUMBER(9),
-     * descripcion    VARCHAR(20),
-     * tipo            VARCHAR(20),
-     * cantidad        NUMBER(9),
-     * fecha            DATE,
-     * numero        REFERENCES Cuenta(numero));
-     * INSTANTIABLE NOT FINAL
-     * REF IS SYSTEM GENERATED;
-     */
 
     /* PRIMARY KEY */
     private String codigo;
