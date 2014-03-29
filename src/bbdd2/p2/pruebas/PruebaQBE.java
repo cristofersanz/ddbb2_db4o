@@ -18,9 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static bbdd2.p2.persistencia.Contenedor.eliminarBD;
-import static bbdd2.p2.pruebas.Datos.actualizarClientes;
-import static bbdd2.p2.pruebas.Datos.agregarClientes;
-import static bbdd2.p2.pruebas.Datos.agregarCuentas;
+import static bbdd2.p2.pruebas.Datos.*;
 
 public class PruebaQBE {
 

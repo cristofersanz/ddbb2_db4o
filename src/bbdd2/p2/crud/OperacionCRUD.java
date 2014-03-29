@@ -33,7 +33,7 @@ public class OperacionCRUD {
         Contenedor.getInstancia().store(operacion);
     }
 
-    public static Operacion encontrarOperacion(final HashMap<String, String> pkOperacion) throws OperacionException {
+    public static Operacion encontrarOperacion(final HashMap<String, String> pkOperacion) {
         List<Operacion> operaciones = Contenedor.getInstancia().query(new Predicate<Operacion>() {
             @Override
             public boolean match(Operacion operacion) {

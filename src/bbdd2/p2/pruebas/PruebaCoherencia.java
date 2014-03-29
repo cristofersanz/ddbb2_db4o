@@ -9,18 +9,13 @@ package bbdd2.p2.pruebas;
 
 import bbdd2.p2.crud.ClienteException;
 import bbdd2.p2.crud.CuentaException;
-import bbdd2.p2.persistencia.Contenedor;
 
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static bbdd2.p2.persistencia.Contenedor.eliminarBD;
 import static bbdd2.p2.pruebas.Datos.*;
 
 public class PruebaCoherencia {
-
 
     public static void main(String[] args) throws ClienteException, CuentaException, IOException {
         eliminarBD();

@@ -146,7 +146,7 @@ public class CuentaCRUD {
                 if (clientes.size() != 0) {
                     for (Iterator<String> iterator = clientes.get(0).getCuentas().iterator(); iterator.hasNext(); ) {
                         String cta = iterator.next();
-                        if (cta == cuenta.getNumero()) {
+                        if (cta.equals(cuenta.getNumero())) {
                             iterator.remove();
                         }
                     }
