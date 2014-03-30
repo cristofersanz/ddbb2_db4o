@@ -18,10 +18,6 @@ import static bbdd2.p2.pruebas.Datos.*;
  * @author Victor Arellano
  * @author Alejandro Bean
  * @author Guillermo Sese
- * @author David Enjuanes
- * @author Victor Arellano
- * @author Alejandro Bean
- * @author Guillermo Sese
  */
 public class PruebaCoherencia {
 
